@@ -1,0 +1,276 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  border-bottom: 1px solid #e5e7eb;
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.headerContent {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  padding: 0 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logoIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.logoText {
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.nav {
+  display: none;
+}
+
+.nav a {
+  margin-left: 1.5rem;
+  font-size: 0.875rem;
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.nav a:hover {
+  color: #111827;
+}
+
+.main {
+  flex: 1;
+}
+
+.homeSection {
+  padding: 3rem 1rem;
+  text-align: center;
+}
+
+.homeContent {
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.homeTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+.homeDescription {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+}
+
+.homeButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.expandedCard {
+  margin-top: 2rem;
+}
+
+.servicesSection {
+  padding: 3rem 1rem;
+  background-color: #f3f4f6;
+}
+
+.sectionContent {
+  max-width: 64rem;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.servicesGrid {
+  display: grid;
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+.serviceCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.serviceIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background-color: rgba(59, 130, 246, 0.1);
+  margin-bottom: 1rem;
+}
+
+.serviceDetails {
+  font-size: 0.875rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+.serviceCardFooter {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.serviceButton {
+  width: 100%;
+}
+
+.footer {
+  width: 100%;
+  padding: 1.5rem 1rem;
+  background-color: #f3f4f6;
+}
+
+.footerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footerLogo {
+  display: flex;
+  align-items: center;
+}
+
+.footerIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.footerLogoText {
+  font-weight: bold;
+  margin-left: 0.5rem;
+}
+
+.footerCopyright {
+  font-size: 0.875rem;
+  color: #6b7280;
+  text-align: center;
+}
+
+.footerSocial {
+  display: flex;
+  gap: 1rem;
+}
+
+.socialLink {
+  color: #6b7280;
+  transition: color 0.2s;
+}
+
+.socialLink:hover {
+  color: #111827;
+}
+
+.chatButton {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  border-radius: 9999px;
+  padding: 1rem;
+}
+
+.chatButtonIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.chatInterface {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  width: 20rem;
+  height: 24rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 640px) {
+  .headerContent {
+    padding: 0 1.5rem;
+  }
+
+  .nav {
+    display: flex;
+  }
+
+  .homeSection {
+    padding: 6rem 1.5rem;
+  }
+
+  .homeTitle {
+    font-size: 2.25rem;
+  }
+
+  .homeDescription {
+    font-size: 1.125rem;
+  }
+
+  .servicesSection {
+    padding: 6rem 1.5rem;
+  }
+
+  .footerContent {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+@media (min-width: 768px) {
+  .homeSection {
+    padding: 8rem 2rem;
+  }
+
+  .homeTitle {
+    font-size: 3rem;
+  }
+
+  .servicesSection {
+    padding: 8rem 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .homeSection {
+    padding: 12rem 2rem;
+  }
+
+  .homeTitle {
+    font-size: 3.75rem;
+  }
+
+  .servicesSection {
+    padding: 12rem 2rem;
+  }
+}
