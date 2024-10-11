@@ -29,6 +29,8 @@ export function HomePageWithExpandableSections() {
     message: '',
   })
   const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = useState(false)
+  const [isChatInquiryPopupOpen, setIsChatInquiryPopupOpen] = useState(false)
+  const [selectedServiceFromChat, setSelectedServiceFromChat] = useState('')
 
   const chatContainerRef = useRef<HTMLDivElement | null>(null)
 
@@ -93,6 +95,16 @@ export function HomePageWithExpandableSections() {
 
       const data = await response.json()
       setMessages(prevMessages => [...prevMessages, { role: 'assistant', content: data.message }])
+
+      // Check if the response mentions opening a request form
+      if (data.message.includes('use the "Get Started" button to open a request form')) {
+        setIsChatInquiryPopupOpen(true)
+        // Try to determine the selected service from the AI's response
+        const serviceMatch = services.find(s => data.message.toLowerCase().includes(s.title.toLowerCase()))
+        if (serviceMatch) {
+          setSelectedServiceFromChat(serviceMatch.id)
+        }
+      }
     } catch (error) {
       console.error('Error:', error)
       setMessages(prevMessages => [
@@ -563,6 +575,72 @@ export function HomePageWithExpandableSections() {
           <DialogFooter>
             <Button onClick={() => setIsConfirmationPopupOpen(false)}>Ok</Button>
           </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog open={isChatInquiryPopupOpen} onOpenChange={setIsChatInquiryPopupOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Request More Information</DialogTitle>
+            <DialogDescription>
+              Please provide your details and any specific requirements for the service you're interested in.
+            </DialogDescription>
+          </DialogHeader>
+          <form onSubmit={handlePopupSubmit}>
+            <div className="space-y-4">
+              <div>
+                <label htmlFor="chat-inquiry-name" className="block text-sm font-medium text-gray-700">Name</label>
+                <Input
+                  id="chat-inquiry-name"
+                  name="name"
+                  value={contactForm.name}
+                  onChange={handleContactInputChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="chat-inquiry-email" className="block text-sm font-medium text-gray-700">Email</label>
+                <Input
+                  id="chat-inquiry-email"
+                  name="email"
+                  type="email"
+                  value={contactForm.email}
+                  onChange={handleContactInputChange}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="chat-inquiry-service" className="block text-sm font-medium text-gray-700">Service</label>
+                <select
+                  id="chat-inquiry-service"
+                  name="service"
+                  value={selectedServiceFromChat}
+                  onChange={(e) => setSelectedServiceFromChat(e.target.value)}
+                  className="w-full p-2 border rounded-md"
+                  required
+                >
+                  <option value="">Select a service</option>
+                  {services.map((service) => (
+                    <option key={service.id} value={service.id}>{service.title}</option>
+                  ))}
+                </select>
+              </div>
+              <div>
+                <label htmlFor="chat-inquiry-requirements" className="block text-sm font-medium text-gray-700">Requirements</label>
+                <textarea
+                  id="chat-inquiry-requirements"
+                  className="w-full p-2 border rounded-md"
+                  rows={4}
+                  value={serviceRequirements}
+                  onChange={(e) => setServiceRequirements(e.target.value)}
+                  required
+                ></textarea>
+              </div>
+            </div>
+            <DialogFooter className="mt-4">
+              <Button type="submit">Submit Request</Button>
+            </DialogFooter>
+          </form>
         </DialogContent>
       </Dialog>
     </div>
