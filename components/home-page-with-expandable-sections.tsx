@@ -1,15 +1,17 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react'
-import { ArrowRight, CheckCircle2, ChevronDown, Code2, Cpu, Globe, Mail, MessageSquare, Phone, Send, X, Zap, Menu } from 'lucide-react'
+import { CheckCircle2, Code2, Cpu, Globe, Mail, MessageSquare,Send, X, Zap, Menu } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { toast, Toaster } from 'react-hot-toast'
 import { sendContactForm } from '../lib/contact'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
+
+/* eslint-disable react/no-unescaped-entities */
 
 export function HomePageWithExpandableSections() {
   const [selectedPlan, setSelectedPlan] = useState('starter')
@@ -153,6 +155,7 @@ export function HomePageWithExpandableSections() {
       setServiceRequirements('')
       setIsConfirmationPopupOpen(true) // Open the confirmation popup
     } catch (error) {
+      console.error('Error:', error)
       toast.error('Failed to send request. Please try again.', { id: toastId })
     }
   }
@@ -171,6 +174,7 @@ export function HomePageWithExpandableSections() {
       setContactForm({ name: '', email: '', message: '' })
       setIsConfirmationPopupOpen(true) // Open the confirmation popup
     } catch (error) {
+      console.error('Failed to send message:', error) // Log the error
       toast.error('Failed to send message. Please try again.', { id: toastId })
     }
   }
@@ -178,7 +182,12 @@ export function HomePageWithExpandableSections() {
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
   }
-//add logo please
+
+  const handleSelectPlan = (planKey: string) => {
+    setSelectedPlan(planKey);
+    handleGetStarted('plan', planKey);
+  };
+
   return (
     <div className="flex flex-col min-h-screen bg-primary-400 text-secondary-100">
       <Toaster position="bottom-right" />
@@ -263,11 +272,11 @@ export function HomePageWithExpandableSections() {
                       <li>Agile Development: Our iterative approach ensures flexibility and allows for continuous improvement based on feedback.</li>
                       <li>Scalable Solutions: We build with growth in mind, ensuring your MVP can evolve into a full-fledged product.</li>
                       <li>Tech Stack Expertise: Our team is proficient in a wide range of modern technologies, allowing us to choose the best tools for your project.</li>
-                      <li>Ongoing Support: We don't just build and leave. We provide continued support to ensure your product's success.</li>
+                      <li>Ongoing Support: We don&apos;t just build and leave. We provide continued support to ensure your product&apos;s success.</li>
                     </ul>
                     <h3 className="text-lg font-semibold mt-4 mb-2 text-primary-900">Why Choose Sollvr?</h3>
                     <p className="text-primary-700">
-                      At Sollvr, we combine technical expertise with a deep understanding of the startup ecosystem. Our team of experienced developers, designers, and project managers work closely with you to bring your vision to life. We're not just service providers; we're your technology partners, committed to your success.
+                      At Sollvr, we combine technical expertise with a deep understanding of the startup ecosystem. Our team of experienced developers, designers, and project managers work closely with you to bring your vision to life. We&apos;re not just service providers; we&apos;re your technology partners, committed to your success.
                     </p>
                   </CardContent>
                 </Card>
@@ -384,7 +393,7 @@ export function HomePageWithExpandableSections() {
                   </CardContent>
                   <CardFooter>
                     <Button
-                      onClick={() => handleGetStarted('plan', key)}
+                      onClick={() => handleSelectPlan(key)}
                       className="w-full hover:bg-black hover:text-white transition-colors"
                     >
                       Select Plan
@@ -542,6 +551,7 @@ export function HomePageWithExpandableSections() {
         <DialogContent>
           <DialogHeader>
             <DialogTitle>
+              {/* eslint-disable-next-line react/no-unescaped-entities */}
               Get Started with {selectedItem?.type === 'service' 
                 ? services.find(s => s.id === selectedItem.id)?.title 
                 : plans[selectedItem?.id as keyof typeof plans]?.name}

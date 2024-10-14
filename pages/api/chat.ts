@@ -1,5 +1,4 @@
 import type { NextApiRequest, NextApiResponse } from 'next'
-import { sendContactForm } from '../../lib/contact'
 
 type Message = {
   role: 'user' | 'assistant';
