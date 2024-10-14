@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react'
-import { ArrowRight, CheckCircle2, ChevronDown, Code2, Cpu, Globe, Mail, MessageSquare, Phone, Send, X, Zap } from 'lucide-react'
+import { ArrowRight, CheckCircle2, ChevronDown, Code2, Cpu, Globe, Mail, MessageSquare, Phone, Send, X, Zap, Menu } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -9,6 +9,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { toast, Toaster } from 'react-hot-toast'
 import { sendContactForm } from '../lib/contact'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
+import { cn } from "@/lib/utils"
 
 export function HomePageWithExpandableSections() {
   const [selectedPlan, setSelectedPlan] = useState('starter')
@@ -31,13 +32,14 @@ export function HomePageWithExpandableSections() {
   const [isConfirmationPopupOpen, setIsConfirmationPopupOpen] = useState(false)
   const [isChatInquiryPopupOpen, setIsChatInquiryPopupOpen] = useState(false)
   const [selectedServiceFromChat, setSelectedServiceFromChat] = useState('')
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   const chatContainerRef = useRef<HTMLDivElement | null>(null)
 
   const plans = {
-    starter: { name: 'Starter', price: 999, time: '1 week' },
-    pro: { name: 'Pro', price: 2999, time: '2 weeks' },
-    enterprise: { name: 'Enterprise', price: 4999, time: '4 weeks' },
+    starter: { name: 'Starter', price: 249, time: '2 weeks' },
+    pro: { name: 'Pro', price: 499, time: '1 week' },
+    enterprise: { name: 'Enterprise', price: 999, time: '3 days' },
   }
 
   const services = [
@@ -173,75 +175,98 @@ export function HomePageWithExpandableSections() {
     }
   }
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+//add logo please
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-primary-400 text-secondary-100">
       <Toaster position="bottom-right" />
-      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="container flex h-14 items-center">
-          <div className="mr-4 hidden md:flex">
-            <a className="mr-6 flex items-center space-x-2" href="/">
-              <Zap className="h-6 w-6" />
-              <span className="hidden font-bold sm:inline-block">sollvr</span>
+      <header className="sticky top-0 z-50 w-full border-b border-primary-300 bg-primary-500/95 backdrop-blur supports-[backdrop-filter]:bg-primary-500/60">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="flex h-14 items-center justify-between">
+            <a className="flex items-center space-x-2" href="/">
+              <Zap className="h-6 w-6 text-secondary-400" /> 
+              <span className="font-logo font-bold text-secondary-400 text-xl">sollvr</span>
             </a>
-            <nav className="flex items-center space-x-6 text-sm font-medium">
-              <a className="transition-colors hover:text-foreground/80 text-foreground/60" href="#home">
-                Home
-              </a>
-              <a className="transition-colors hover:text-foreground/80 text-foreground/60" href="#services">
-                Services
-              </a>
-              <a className="transition-colors hover:text-foreground/80 text-foreground/60" href="#products">
-                Products
-              </a>
-              <a className="transition-colors hover:text-foreground/80 text-foreground/60" href="#pricing">
-                Pricing
-              </a>
-              <a className="transition-colors hover:text-foreground/80 text-foreground/60" href="#contact">
-                Contact
-              </a>
+            <nav className="hidden md:flex items-center space-x-1 text-sm font-medium">
+              <a className="px-3 py-2 rounded-md transition-colors hover:bg-black hover:text-white" href="#home">Home</a>
+              <a className="px-3 py-2 rounded-md transition-colors hover:bg-black hover:text-white" href="#services">Services</a>
+              <a className="px-3 py-2 rounded-md transition-colors hover:bg-black hover:text-white" href="#pricing">Pricing</a>
+              <a className="px-3 py-2 rounded-md transition-colors hover:bg-black hover:text-white" href="#contact">Contact</a>
             </nav>
+            <Button className="md:hidden" size="icon" variant="ghost" onClick={toggleMobileMenu}>
+              <Menu className="h-6 w-6 text-secondary-200" />
+            </Button>
           </div>
         </div>
       </header>
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed inset-0 z-50 bg-primary-500/95 backdrop-blur supports-[backdrop-filter]:bg-primary-500/60">
+          <div className="container mx-auto px-4 py-6">
+            <div className="flex justify-between items-center mb-6">
+              <a className="flex items-center space-x-2" href="/">
+                <Zap className="h-6 w-6 text-secondary-400" />
+                <span className="font-logo font-bold text-secondary-400 text-xl">sollvr</span>
+              </a>
+              <Button size="icon" variant="ghost" onClick={toggleMobileMenu}>
+                <X className="h-6 w-6 text-secondary-200" />
+              </Button>
+            </div>
+            <nav className="flex flex-col space-y-4">
+              <a className="text-lg font-medium px-3 py-2 rounded-md transition-colors hover:bg-primary-600 hover:text-secondary-200" href="#home" onClick={toggleMobileMenu}>Home</a>
+              <a className="text-lg font-medium px-3 py-2 rounded-md transition-colors hover:bg-primary-600 hover:text-secondary-200" href="#services" onClick={toggleMobileMenu}>Services</a>
+              <a className="text-lg font-medium px-3 py-2 rounded-md transition-colors hover:bg-primary-600 hover:text-secondary-200" href="#products" onClick={toggleMobileMenu}>Products</a>
+              <a className="text-lg font-medium px-3 py-2 rounded-md transition-colors hover:bg-primary-600 hover:text-secondary-200" href="#pricing" onClick={toggleMobileMenu}>Pricing</a>
+              <a className="text-lg font-medium px-3 py-2 rounded-md transition-colors hover:bg-primary-600 hover:text-secondary-200" href="#contact" onClick={toggleMobileMenu}>Contact</a>
+            </nav>
+          </div>
+        </div>
+      )}
       <main className="flex-1">
-        <section id="home" className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-          <div className="container px-4 md:px-6">
+        <section id="home" className="w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-primary-300">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <div className="flex flex-col items-center space-y-4 text-center">
               <div className="space-y-2">
-                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
+                <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-secondary-400">
                   Empowering Startups with Rapid MVP Development
                 </h1>
-                <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
+                <p className="mx-auto max-w-[700px] text-secondary-200 md:text-xl">
                   We turn your ideas into reality. Fast, efficient, and tailored for startups without in-house developers.
                 </p>
               </div>
               <div className="space-x-4">
-                <Button asChild>
+                <Button asChild className="bg-secondary-400 text-primary-700 hover:bg-black hover:text-white transition-colors">
                   <a href="#contact">Get Started</a>
                 </Button>
-                <Button variant="outline" onClick={toggleHomeExpansion}>
+                <Button 
+                  variant="outline" 
+                  onClick={toggleHomeExpansion} 
+                  className="text-secondary-200 border-secondary-200 hover:bg-black hover:text-white transition-colors"
+                >
                   {isHomeExpanded ? 'Show Less' : 'Learn More'}
                 </Button>
               </div>
               {isHomeExpanded && (
-                <Card className="mt-8 w-full max-w-3xl">
+                <Card className="mt-8 w-full max-w-3xl bg-primary-200 text-primary-800">
                   <CardHeader>
-                    <CardTitle>About Sollvr</CardTitle>
+                    <CardTitle className="text-primary-900">About Sollvr</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <p className="text-primary-700">
                       Sollvr is a cutting-edge technology company specializing in rapid MVP development, web application creation, and comprehensive IT solutions for startups. We understand the unique challenges faced by new businesses and have tailored our services to meet these specific needs.
                     </p>
-                    <h3 className="text-lg font-semibold mt-4 mb-2">Our Approach</h3>
-                    <ul className="list-disc pl-5 space-y-2 text-gray-500 dark:text-gray-400">
+                    <h3 className="text-lg font-semibold mt-4 mb-2 text-primary-900">Our Approach</h3>
+                    <ul className="list-disc pl-5 space-y-2 text-primary-700">
                       <li>Rapid Prototyping: We quickly turn your ideas into functional prototypes, allowing for early testing and validation.</li>
                       <li>Agile Development: Our iterative approach ensures flexibility and allows for continuous improvement based on feedback.</li>
                       <li>Scalable Solutions: We build with growth in mind, ensuring your MVP can evolve into a full-fledged product.</li>
                       <li>Tech Stack Expertise: Our team is proficient in a wide range of modern technologies, allowing us to choose the best tools for your project.</li>
                       <li>Ongoing Support: We don't just build and leave. We provide continued support to ensure your product's success.</li>
                     </ul>
-                    <h3 className="text-lg font-semibold mt-4 mb-2">Why Choose Sollvr?</h3>
-                    <p className="text-gray-500 dark:text-gray-400">
+                    <h3 className="text-lg font-semibold mt-4 mb-2 text-primary-900">Why Choose Sollvr?</h3>
+                    <p className="text-primary-700">
                       At Sollvr, we combine technical expertise with a deep understanding of the startup ecosystem. Our team of experienced developers, designers, and project managers work closely with you to bring your vision to life. We're not just service providers; we're your technology partners, committed to your success.
                     </p>
                   </CardContent>
@@ -250,10 +275,10 @@ export function HomePageWithExpandableSections() {
             </div>
           </div>
         </section>
-        <section id="services" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-          <div className="container px-4 md:px-6">
+        <section id="services" className="w-full py-12 md:py-16 lg:py-20 bg-gray-100 dark:bg-gray-800">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Our Services</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {services.map((service) => (
                 <Card key={service.id} className="flex flex-col">
                   <CardHeader>
@@ -272,13 +297,13 @@ export function HomePageWithExpandableSections() {
                     <Button
                       variant="outline"
                       onClick={() => toggleServiceExpansion(service.id)}
-                      className="w-full"
+                      className="w-full hover:bg-black hover:text-white transition-colors"
                     >
                       {expandedService === service.id ? 'Show Less' : 'Learn More'}
                     </Button>
                     <Button
                       onClick={() => handleGetStarted('service', service.id)}
-                      className="w-full"
+                      className="w-full hover:bg-black hover:text-white transition-colors"
                     >
                       Get Started
                     </Button>
@@ -288,10 +313,11 @@ export function HomePageWithExpandableSections() {
             </div>
           </div>
         </section>
+        {/* Comment out the entire products section
         <section id="products" className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Our Products</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               <div className="flex flex-col items-center text-center">
                 <img
                   alt="Product 1"
@@ -328,10 +354,11 @@ export function HomePageWithExpandableSections() {
             </div>
           </div>
         </section>
-        <section id="pricing" className="w-full py-12 md:py-24 lg:py-32 bg-gray-100 dark:bg-gray-800">
-          <div className="container px-4 md:px-6">
+        */}
+        <section id="pricing" className="w-full py-12 md:py-16 lg:py-20 bg-gray-100 dark:bg-gray-800">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
             <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Pricing Plans</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
               {Object.entries(plans).map(([key, plan]) => (
                 <Card key={key} className={selectedPlan === key ? 'border-primary' : ''}>
                   <CardHeader>
@@ -358,7 +385,7 @@ export function HomePageWithExpandableSections() {
                   <CardFooter>
                     <Button
                       onClick={() => handleGetStarted('plan', key)}
-                      className="w-full"
+                      className="w-full hover:bg-black hover:text-white transition-colors"
                     >
                       Select Plan
                     </Button>
@@ -368,24 +395,20 @@ export function HomePageWithExpandableSections() {
             </div>
           </div>
         </section>
-        <section id="contact" className="w-full py-12 md:py-24 lg:py-32">
-          <div className="container px-4 md:px-6">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Contact Us</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <section id="contact" className="w-full py-12 md:py-24 lg:py-32 bg-primary-500">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 text-secondary-400">Contact Us</h2>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               <div className="space-y-4">
-                <h3 className="text-xl font-bold">Get in Touch</h3>
-                <p className="text-gray-500 dark:text-gray-400">
+                <h3 className="text-xl font-bold text-secondary-300">Get in Touch</h3>
+                <p className="text-secondary-100">
                   Have questions or ready to start your project? Reach out to us!
                 </p>
                 <div className="flex items-center space-x-2">
-                  <Mail className="h-5 w-5 text-primary" />
-                  <span>contact@sollvr.com</span>
+                  <Mail className="h-5 w-5 text-secondary-400" />
+                  <span className="text-secondary-200">contact@sollvr.com</span>
                 </div>
-                <div className="flex items-center space-x-2">
-                  <Phone className="h-5 w-5 text-primary" />
-                  <span>+1 (555) 123-4567</span>
                 </div>
-              </div>
               <form onSubmit={handleContactSubmit} className="space-y-4">
                 <div className="space-y-2">
                   <label htmlFor="name">Name</label>
@@ -423,30 +446,26 @@ export function HomePageWithExpandableSections() {
                     required
                   ></textarea>
                 </div>
-                <Button type="submit">Send Message</Button>
+                <Button 
+                  type="submit" 
+                  className="bg-secondary-400 text-primary-700 hover:bg-black hover:text-white transition-colors"
+                >
+                  Send Message
+                </Button>
               </form>
             </div>
           </div>
         </section>
       </main>
-      <footer className="w-full py-6 bg-gray-100 dark:bg-gray-800">
-        <div className="container px-4 md:px-6">
-          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+      <footer className="w-full py-6 bg-primary-600">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <Zap className="h-6 w-6" />
-              <span className="font-bold">sollvr</span>
+              <Zap className="h-6 w-6 text-secondary-400" />
+              <span className="font-logo font-bold text-secondary-400 text-xl">sollvr</span>
             </div>
-            <p className="text-center text-sm leading-loose text-gray-500 dark:text-gray-400 md:text-left">
-              © 2023 sollvr. All rights reserved.
+            <p className="text-center text-sm text-secondary-200">
             </p>
-            <div className="flex items-center gap-4">
-              <a href="#" className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
-                <MessageSquare className="h-5 w-5" />
-              </a>
-              <a href="#" className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
-                <Mail className="h-5 w-5" />
-              </a>
-            </div>
           </div>
         </div>
       </footer>
@@ -454,7 +473,10 @@ export function HomePageWithExpandableSections() {
       {/* Chat Button */}
       <Button
         onClick={() => setIsChatOpen(true)}
-        className="fixed bottom-4 right-4 rounded-full p-4"
+        className={cn(
+          "fixed bottom-4 right-4 z-50 rounded-full p-4 shadow-lg",
+          "bg-secondary-400 hover:bg-black text-primary-700 hover:text-white transition-colors"
+        )}
         size="icon"
       >
         <MessageSquare className="h-6 w-6" />
@@ -462,14 +484,14 @@ export function HomePageWithExpandableSections() {
 
       {/* Chat Interface */}
       {isChatOpen && (
-        <Card className="fixed bottom-4 right-4 w-80 h-96 flex flex-col">
-          <CardHeader className="flex flex-row items-center">
-            <CardTitle>Chat with AI</CardTitle>
+        <Card className="fixed bottom-4 right-4 w-full sm:w-80 h-96 flex flex-col z-50 shadow-xl bg-primary-200 text-secondary-900">
+          <CardHeader className="flex flex-row items-center bg-primary-300">
+            <CardTitle className="text-secondary-800">Chat with AI</CardTitle>
             <Button
               onClick={() => setIsChatOpen(false)}
               variant="ghost"
               size="icon"
-              className="ml-auto"
+              className="ml-auto text-secondary-700 hover:bg-black hover:text-white transition-colors"
             >
               <X className="h-4 w-4" />
               <span className="sr-only">Close</span>
@@ -500,8 +522,14 @@ export function HomePageWithExpandableSections() {
                 placeholder="Type your message..."
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
+                className="bg-primary-100 text-secondary-900 placeholder-secondary-500"
               />
-              <Button type="submit" size="icon" disabled={isLoading}>
+              <Button 
+                type="submit" 
+                size="icon" 
+                disabled={isLoading} 
+                className="bg-secondary-400 text-primary-700 hover:bg-black hover:text-white transition-colors"
+              >
                 <Send className="h-4 w-4" />
                 <span className="sr-only">Send</span>
               </Button>
