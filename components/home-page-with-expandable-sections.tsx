@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react'
-import { CheckCircle2, Code2, Cpu, Globe, Mail, MessageSquare,Send, X, Zap, Menu } from 'lucide-react'
+import { CheckCircle2, Code2, Cpu, Globe, Mail, MessageSquare,Send, X, Menu } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -195,8 +195,8 @@ export function HomePageWithExpandableSections() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex h-14 items-center justify-between">
             <a className="flex items-center space-x-2" href="/">
-              <Zap className="h-6 w-6 text-secondary-400" /> 
-              <span className="font-logo font-bold text-secondary-400 text-xl">sollvr</span>
+              <img src="favicon.ico" alt="Sollvr Logo" className="w-6 h-6" />
+              <span className="font-logo font-bold text-secondary-400 text-xl">sollvr.</span>
             </a>
             <nav className="hidden md:flex items-center space-x-1 text-sm font-medium">
               <a className="px-3 py-2 rounded-md transition-colors hover:bg-black hover:text-white" href="#home">Home</a>
@@ -216,7 +216,7 @@ export function HomePageWithExpandableSections() {
           <div className="container mx-auto px-4 py-6">
             <div className="flex justify-between items-center mb-6">
               <a className="flex items-center space-x-2" href="/">
-                <Zap className="h-6 w-6 text-secondary-400" />
+                <img src="/favicon.svg" alt="Sollvr Logo" className="w-6 h-6" />
                 <span className="font-logo font-bold text-secondary-400 text-xl">sollvr</span>
               </a>
               <Button size="icon" variant="ghost" onClick={toggleMobileMenu}>
@@ -470,11 +470,9 @@ export function HomePageWithExpandableSections() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2">
-              <Zap className="h-6 w-6 text-secondary-400" />
+              <img src="/favicon.svg" alt="Sollvr Logo" className="w-6 h-6" />
               <span className="font-logo font-bold text-secondary-400 text-xl">sollvr</span>
             </div>
-            <p className="text-center text-sm text-secondary-200">
-            </p>
           </div>
         </div>
       </footer>
