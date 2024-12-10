@@ -30,7 +30,7 @@ export default function Page() {
       <main>
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-20 text-center">
-          <h1 className="text-6xl font-extrabold text-gray-800 mb-6">
+          <h1 className="font-roboto text-6xl font-medium text-gray-800 mb-6 tracking-tight">
             Boost Your Startup with <span className="text-[rgb(0,74,172)]">Ready-to-Launch</span> Projects
           </h1>
           <p className="text-xl text-gray-600 mb-8">
@@ -55,7 +55,7 @@ export default function Page() {
               description="An intelligent quiz generation system that creates custom quizzes based on your content. Perfect for educators and training platforms."
               image="/ai-quiz-gen.png"
               techStack={["Next.js", "OpenAI", "TailwindCSS", "TypeScript"]}
-              demoLink="https://quzai.sollvr.com"
+              demoLink="https://quizai.sollvr.com"
             />
             <ProjectCard 
               title="Data from Image"
