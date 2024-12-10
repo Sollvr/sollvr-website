@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Rocket, Send, ChevronRight, Github } from 'lucide-react'
+import { Rocket, Send, ChevronRight, Github, Sparkles, CreditCard, MessageSquare } from 'lucide-react'
 import { ContactForm } from '@/components/contact-form'
 import { PricingSection } from '@/components/pricing-section'
 
@@ -37,14 +37,19 @@ export default function Page() {
           <p className="text-xl text-gray-600 mb-8">
             Why reinvent the wheel when you can use our rocket boosters? Launch your MVP faster than you can say "disrupt".
           </p>
-          <Button size="lg" className="bg-[rgb(0,74,172)] hover:bg-[rgb(0,60,140)]">
+          <Button size="lg" className="bg-[rgb(0,74,172)] hover:bg-white hover:text-[rgb(0,74,172)] transition-colors">
             Explore Projects <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </section>
 
         {/* Projects Section */}
         <section id="projects" className="container mx-auto px-4 py-20">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Our Launchpad Projects</h2>
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <Sparkles className="w-8 h-8 text-[rgb(0,74,172)]" />
+            <h2 className="font-poppins font-bold text-4xl text-center text-gray-900">
+              Our Launchpad Projects
+            </h2>
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <ProjectCard 
               title="AI Quiz Generator"
@@ -68,7 +73,12 @@ export default function Page() {
 
         {/* Contact Section */}
         <section id="contact" className="container mx-auto px-4 py-20">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Let's Talk Rocket Science</h2>
+          <div className="flex items-center justify-center gap-3 mb-12">
+            <MessageSquare className="w-8 h-8 text-[rgb(0,74,172)]" />
+            <h2 className="font-poppins font-bold text-4xl text-center text-gray-900">
+              Let's Talk Rocket Science
+            </h2>
+          </div>
           <div className="max-w-md mx-auto">
             <ContactForm />
           </div>
@@ -116,7 +126,7 @@ function ProjectCard({ title, description, image, techStack, demoLink }: Project
         </div>
         <div className="flex justify-between items-center">
           <Link href={demoLink} target="_blank" rel="noopener noreferrer">
-            <Button className="bg-[rgb(0,74,172)] hover:bg-[rgb(0,60,140)]">
+            <Button className="bg-[rgb(0,74,172)] hover:bg-white hover:text-[rgb(0,74,172)] border border-transparent hover:border-[rgb(0,74,172)] transition-all">
               View Demo
             </Button>
           </Link>

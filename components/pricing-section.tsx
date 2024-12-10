@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
-import { ChevronRight } from 'lucide-react'
+import { ChevronRight, CreditCard } from 'lucide-react'
 import { ContactForm } from './contact-form'
 import {
   Dialog,
@@ -36,7 +36,11 @@ function PricingCard({ title, price, features, highlighted = false, onSelect, is
       </ul>
       <Button 
         onClick={onSelect}
-        className={`w-full ${highlighted || isSelected ? 'bg-[rgb(0,74,172)] hover:bg-[rgb(0,60,140)]' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+        className={`w-full border border-transparent transition-all ${
+          highlighted || isSelected 
+            ? 'bg-[rgb(0,74,172)] hover:bg-white hover:text-[rgb(0,74,172)] hover:border-[rgb(0,74,172)]' 
+            : 'bg-gray-200 text-gray-800 hover:bg-white hover:text-[rgb(0,74,172)] hover:border-[rgb(0,74,172)]'
+        }`}
       >
         Choose Plan
       </Button>
@@ -57,7 +61,12 @@ export function PricingSection() {
 
   return (
     <section id="pricing" className="container mx-auto px-4 py-20 bg-[#FFE5D9]">
-      <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Pricing That Won't Break The Bank</h2>
+      <div className="flex items-center justify-center gap-3 mb-12">
+        <CreditCard className="w-8 h-8 text-[rgb(0,74,172)]" />
+        <h2 className="font-poppins font-bold text-4xl text-center text-gray-900">
+          Pricing That Won't Break The Bank
+        </h2>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <PricingCard 
           title="Starter"

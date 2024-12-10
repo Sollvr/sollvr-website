@@ -112,7 +112,7 @@ export function ContactForm({ selectedPlan }: ContactFormProps) {
         )}
         <Button
           type="submit"
-          className="w-full bg-[rgb(0,74,172)] hover:bg-[rgb(0,60,140)] disabled:opacity-50"
+          className="w-full bg-[rgb(0,74,172)] hover:bg-white hover:text-[rgb(0,74,172)] border border-transparent hover:border-[rgb(0,74,172)] transition-all disabled:opacity-50 disabled:hover:bg-[rgb(0,74,172)] disabled:hover:text-white disabled:hover:border-transparent"
           disabled={status === 'submitting'}
         >
           {status === 'submitting' ? (
