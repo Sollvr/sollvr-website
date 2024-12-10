@@ -1,14 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Rocket, Send, ChevronRight, Github, Sparkles, CreditCard, MessageSquare } from 'lucide-react'
+import { ChevronRight, MessageSquare, Github, Sparkles } from 'lucide-react'
 import { ContactForm } from '@/components/contact-form'
 import { PricingSection } from '@/components/pricing-section'
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#FFE5D9] via-[#FFE5D9] to-[#FFDCC8]">
+    <div className="min-h-screen bg-gradient-to-b from-[#FFE5D9] via-[#FFE5D9] to-[#F5EDE4]">
       <header className="container mx-auto px-4 py-8">
         <nav className="flex justify-between items-center">
           <Link href="/" className="relative w-32 h-12">
@@ -35,7 +34,7 @@ export default function Page() {
             Boost Your Startup with <span className="text-[rgb(0,74,172)]">Ready-to-Launch</span> Projects
           </h1>
           <p className="text-xl text-gray-600 mb-8">
-            Why reinvent the wheel when you can use our rocket boosters? Launch your MVP faster than you can say "disrupt".
+            Why reinvent the wheel when you can use our rocket boosters? Launch your MVP faster than you can say &ldquo;disrupt&rdquo;.
           </p>
           <Button size="lg" className="bg-[rgb(0,74,172)] hover:bg-white hover:text-[rgb(0,74,172)] transition-colors">
             Explore Projects <ChevronRight className="ml-2 h-4 w-4" />
@@ -73,11 +72,25 @@ export default function Page() {
 
         {/* Contact Section */}
         <section id="contact" className="container mx-auto px-4 py-20">
-          <div className="flex items-center justify-center gap-3 mb-12">
+          <div className="relative flex items-center justify-center gap-3 mb-12">
             <MessageSquare className="w-8 h-8 text-[rgb(0,74,172)]" />
             <h2 className="font-poppins font-bold text-4xl text-center text-gray-900">
-              Let's Talk Rocket Science
+              Let&apos;s Talk Rocket Science
             </h2>
+            <div className="hidden lg:block ml-4">
+              <div className="w-16 h-16 rounded-full overflow-hidden bg-white shadow-lg">
+                <video 
+                  className="w-full h-full object-cover scale-150"
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                >
+                  <source src="/animation-2.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
           </div>
           <div className="max-w-md mx-auto">
             <ContactForm />

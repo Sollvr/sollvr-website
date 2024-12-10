@@ -61,11 +61,25 @@ export function PricingSection() {
 
   return (
     <section id="pricing" className="container mx-auto px-4 py-20 bg-[#FFE5D9]">
-      <div className="flex items-center justify-center gap-3 mb-12">
-        <CreditCard className="w-8 h-8 text-[rgb(0,74,172)]" />
-        <h2 className="font-poppins font-bold text-4xl text-center text-gray-900">
-          Pricing That Won't Break The Bank
-        </h2>
+      <div className="flex flex-col items-center justify-center mb-12">
+        <div className="w-32 h-32 mb-6 rounded-full overflow-hidden bg-white shadow-lg">
+          <video 
+            className="w-full h-full object-cover scale-150"
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+          >
+            <source src="/animation.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div className="flex items-center justify-center gap-3">
+          <CreditCard className="w-8 h-8 text-[rgb(0,74,172)]" />
+          <h2 className="font-poppins font-bold text-4xl text-center text-gray-900">
+            Pricing That Won&apos;t Break The Bank
+          </h2>
+        </div>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <PricingCard 
@@ -111,7 +125,7 @@ export function PricingSection() {
           <DialogHeader>
             <DialogTitle>Contact Us - {selectedPlanTitle} Plan</DialogTitle>
             <DialogDescription>
-              Please fill out the form below and we'll get back to you with more information about the {selectedPlanTitle} plan.
+              Please fill out the form below and we&apos;ll get back to you with more information about the {selectedPlanTitle} plan.
             </DialogDescription>
           </DialogHeader>
           <ContactForm selectedPlan={selectedPlanTitle} />

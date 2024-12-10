@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from 'react'
-import { CheckCircle2, Code2, Cpu, Globe, Mail, MessageSquare,Send, X, Menu } from 'lucide-react'
+import { CheckCircle2, Code2, Cpu, Globe, Mail, MessageSquare, Send, X, Menu } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
@@ -10,6 +10,7 @@ import { toast, Toaster } from 'react-hot-toast'
 import { sendContactForm } from '../lib/contact'
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog"
 import { cn } from "@/lib/utils"
+import Image from 'next/image'
 
 /* eslint-disable react/no-unescaped-entities */
 
@@ -195,7 +196,14 @@ export function HomePageWithExpandableSections() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex h-14 items-center justify-between">
             <a className="flex items-center space-x-2" href="/">
-              <img src="favicon.ico" alt="Sollvr Logo" className="w-6 h-6" />
+              <div className="relative w-6 h-6">
+                <Image 
+                  src="/favicon.ico" 
+                  alt="Sollvr Logo" 
+                  fill
+                  className="object-contain"
+                />
+              </div>
               <span className="font-logo font-bold text-secondary-400 text-xl">sollvr.</span>
             </a>
             <nav className="hidden md:flex items-center space-x-1 text-sm font-medium">
@@ -216,7 +224,14 @@ export function HomePageWithExpandableSections() {
           <div className="container mx-auto px-4 py-6">
             <div className="flex justify-between items-center mb-6">
               <a className="flex items-center space-x-2" href="/">
-                <img src="/favicon.svg" alt="Sollvr Logo" className="w-6 h-6" />
+                <div className="relative w-6 h-6">
+                  <Image 
+                    src="/favicon.svg" 
+                    alt="Sollvr Logo" 
+                    fill
+                    className="object-contain"
+                  />
+                </div>
                 <span className="font-logo font-bold text-secondary-400 text-xl">sollvr</span>
               </a>
               <Button size="icon" variant="ghost" onClick={toggleMobileMenu}>
