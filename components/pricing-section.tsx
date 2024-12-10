@@ -20,7 +20,6 @@ interface PricingCardProps {
   buttonText: string;
   tag?: string;
   onSelect: () => void;
-  isSelected: boolean;
   dark?: boolean;
 }
 
@@ -32,7 +31,6 @@ function PricingCard({
   buttonText,
   tag,
   onSelect, 
-  isSelected,
   dark = false 
 }: PricingCardProps) {
   return (
@@ -46,7 +44,7 @@ function PricingCard({
       <p className={`text-base mb-6 ${dark ? 'text-gray-400' : 'text-gray-600'}`}>{description}</p>
       <div className="flex items-baseline gap-1 mb-6">
         <span className="text-4xl font-bold">{price}</span>
-        {price !== 'Starting at $2497' && <span className={dark ? 'text-gray-400' : 'text-gray-600'}>/month</span>}
+        {price !== 'Starting at $497' && <span className={dark ? 'text-gray-400' : 'text-gray-600'}>/month</span>}
       </div>
       <Button 
         onClick={onSelect}
@@ -58,7 +56,7 @@ function PricingCard({
       >
         {buttonText}
       </Button>
-      <p className={`font-medium mb-4 ${dark ? 'text-white' : 'text-black'}`}>What's Included:</p>
+      <p className={`font-medium mb-4 ${dark ? 'text-white' : 'text-black'}`}>What&apos;s Included:</p>
       <ul className="space-y-4">
         {features.map((feature, index) => (
           <li key={index} className="flex items-start gap-3">
@@ -72,21 +70,23 @@ function PricingCard({
 }
 
 export function PricingSection() {
-  const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [selectedPlanTitle, setSelectedPlanTitle] = useState<string>('');
+  const [selectedPlanTitle, setSelectedPlanTitle] = useState('');
 
   const handlePlanSelect = (planTitle: string) => {
-    setSelectedPlan(planTitle);
     setSelectedPlanTitle(planTitle);
     setIsContactOpen(true);
   };
 
   return (
-    <section id="pricing" className="container mx-auto px-4 py-20">
+    <section className="container mx-auto px-4 py-20">
       <div className="text-center mb-16">
-        <h2 className="text-5xl font-bold mb-4 text-[rgb(0,74,172)]">Ready to BUILD?</h2>
-        <p className="text-xl text-gray-600">Choose the perfect package for your project and get started today</p>
+        <h2 className="text-5xl font-bold mb-4 text-[rgb(0,74,172)]">
+          Ready to Ignite Your Idea?
+        </h2>
+        <p className="text-xl text-gray-600">
+          Let&apos;s build something amazing together
+        </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
         <PricingCard 
@@ -104,7 +104,6 @@ export function PricingSection() {
             "Regular updates"
           ]}
           onSelect={() => handlePlanSelect('MVP Development')}
-          isSelected={selectedPlan === 'MVP Development'}
         />
         <PricingCard 
           title="Growth Package"
@@ -119,7 +118,6 @@ export function PricingSection() {
             "Priority feature development",
           ]}
           onSelect={() => handlePlanSelect('Growth Retainer')}
-          isSelected={selectedPlan === 'Growth Retainer'}
           dark={true}
         />
       </div>
@@ -129,10 +127,10 @@ export function PricingSection() {
           <DialogHeader>
             <DialogTitle>Contact Us - {selectedPlanTitle} Plan</DialogTitle>
             <DialogDescription>
-              Please fill out the form below and we'll get back to you with more information about the {selectedPlanTitle} plan.
+              Please fill out the form below and we&apos;ll get back to you with more information about the {selectedPlanTitle} plan.
             </DialogDescription>
           </DialogHeader>
-          <ContactForm selectedPlan={selectedPlanTitle} />
+          <ContactForm selectedPackage={selectedPlanTitle} />
         </DialogContent>
       </Dialog>
     </section>
