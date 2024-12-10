@@ -51,7 +51,7 @@ export default function Page() {
                   Explore Projects <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Button size="lg" variant="outline" className="h-12 px-8">
-                  View Demo
+                  About us
                 </Button>
               </div>
             </div>
@@ -59,21 +59,24 @@ export default function Page() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="py-32 bg-white">
+        <section id="projects" className="py-32 bg-[#FFE5D9]">
           <div className="container mx-auto px-4">
-            <div className="flex items-center justify-center gap-3 mb-16">
-              <Sparkles className="w-8 h-8 text-[rgb(0,74,172)]" />
-              <h2 className="font-roboto text-4xl font-medium text-center text-gray-900">
-                Our Launchpad Projects
+            <div className="text-center mb-16">
+              <h2 className="text-5xl font-bold mb-4">
+                Some <span className="text-[rgb(0,74,172)]">websites</span> that I have built.
               </h2>
+              <p className="text-xl text-gray-600">
+                Here are some of the MVPs I've launched. Innovative ideas converted into reality.
+              </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
               <ProjectCard 
                 title="AI Quiz Generator"
                 description="An intelligent quiz generation system that creates custom quizzes based on your content. Perfect for educators and training platforms."
                 image="/ai-quiz-gen.png"
                 techStack={["Next.js", "OpenAI", "TailwindCSS", "TypeScript"]}
                 demoLink="https://quzai.sollvr.com"
+                tags={["AI", "EdTech", "Study Companion", "PDF/Video Analysis"]}
               />
               <ProjectCard 
                 title="Data from Image"
@@ -81,6 +84,7 @@ export default function Page() {
                 image="/datafromimg-img.png"
                 techStack={["React", "TensorFlow", "Python", "Computer Vision"]}
                 demoLink="https://datafromimage.sollvr.com"
+                tags={["Mobile App", "Social Networking", "Travel", "Solo Travelers"]}
               />
             </div>
           </div>
@@ -131,34 +135,43 @@ interface ProjectCardProps {
   image: string;
   techStack: string[];
   demoLink: string;
+  tags: string[];
 }
 
-function ProjectCard({ title, description, image, techStack, demoLink }: ProjectCardProps) {
+function ProjectCard({ title, description, image, techStack, demoLink, tags }: ProjectCardProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden transition-all hover:shadow-md">
-      <div className="relative h-64 w-full bg-gray-50">
-        <Image 
-          src={image} 
-          alt={title} 
-          fill
-          className="object-contain p-8"
-          priority
-        />
-      </div>
-      <div className="p-8">
-        <h3 className="text-xl font-semibold mb-3 text-gray-900">{title}</h3>
-        <p className="text-gray-600 mb-6">{description}</p>
-        <div className="flex flex-wrap gap-2 mb-6">
+    <div className="bg-white rounded-3xl overflow-hidden p-8 relative group shadow-lg">
+      <div className="absolute inset-0 bg-gradient-to-br from-white to-[rgb(0,74,172)] opacity-5"></div>
+      <div className="relative z-10">
+        <div className="flex gap-2 mb-6">
+          {tags.map((tag, index) => (
+            <span key={index} className="bg-[rgb(0,74,172)]/10 text-[rgb(0,74,172)] text-sm px-4 py-1 rounded-full">
+              {tag}
+            </span>
+          ))}
+        </div>
+        <h3 className="text-3xl font-bold text-gray-900 mb-4">{title}</h3>
+        <p className="text-gray-600 mb-8 text-lg">{description}</p>
+        <div className="relative h-[400px] w-full mb-8 rounded-2xl overflow-hidden bg-gray-50">
+          <Image 
+            src={image} 
+            alt={title} 
+            fill
+            className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+            priority
+          />
+        </div>
+        <div className="flex flex-wrap gap-2 mb-8">
           {techStack.map((tech, index) => (
-            <span key={index} className="bg-blue-50 text-[rgb(0,74,172)] text-sm font-medium px-3 py-1 rounded-full">
+            <span key={index} className="bg-[rgb(0,74,172)]/10 text-[rgb(0,74,172)] text-sm font-medium px-4 py-1.5 rounded-full border border-[rgb(0,74,172)]/20">
               {tech}
             </span>
           ))}
         </div>
         <div className="flex justify-between items-center">
           <Link href={demoLink} target="_blank" rel="noopener noreferrer">
-            <Button className="bg-[rgb(0,74,172)] hover:bg-white hover:text-[rgb(0,74,172)] border border-transparent hover:border-[rgb(0,74,172)] transition-all">
-              View Demo
+            <Button className="bg-[rgb(0,74,172)] text-white hover:bg-[rgb(0,74,172)]/90 h-12 px-6">
+              View Live Demo
             </Button>
           </Link>
           <Link href="#" className="text-gray-400 hover:text-gray-600 transition-colors">
