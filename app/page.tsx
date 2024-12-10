@@ -8,7 +8,7 @@ import { PricingSection } from '@/components/pricing-section'
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-purple-50 to-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#FFE5D9] via-[#FFE5D9] to-[#FFDCC8]">
       <header className="container mx-auto px-4 py-8">
         <nav className="flex justify-between items-center">
           <Link href="/" className="relative w-32 h-12">
@@ -21,9 +21,9 @@ export default function Page() {
             />
           </Link>
           <div className="space-x-4">
-            <Link href="/#projects" className="text-gray-600 hover:text-purple-600">Projects</Link>
-            <Link href="/#pricing" className="text-gray-600 hover:text-purple-600">Pricing</Link>
-            <Link href="/#contact" className="text-gray-600 hover:text-purple-600">Contact</Link>
+            <Link href="/#projects" className="text-gray-600 hover:text-[rgb(0,74,172)]">Projects</Link>
+            <Link href="/#pricing" className="text-gray-600 hover:text-[rgb(0,74,172)]">Pricing</Link>
+            <Link href="/#contact" className="text-gray-600 hover:text-[rgb(0,74,172)]">Contact</Link>
           </div>
         </nav>
       </header>
@@ -32,12 +32,12 @@ export default function Page() {
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-20 text-center">
           <h1 className="text-6xl font-extrabold text-gray-800 mb-6">
-          Empowering Startups with  <span className="text-purple-600">Rapid MVP</span> Development
+            Boost Your Startup with <span className="text-[rgb(0,74,172)]">Ready-to-Launch</span> Projects
           </h1>
-          <p className="text-xl text-gray-600 mb-8"> 
-           We turn your ideas into reality. Fast, efficient, and tailored for startups without in-house developers.
+          <p className="text-xl text-gray-600 mb-8">
+            Why reinvent the wheel when you can use our rocket boosters? Launch your MVP faster than you can say "disrupt".
           </p>
-          <Button size="lg" className="bg-purple-600 hover:bg-purple-700">
+          <Button size="lg" className="bg-[rgb(0,74,172)] hover:bg-[rgb(0,60,140)]">
             Explore Projects <ChevronRight className="ml-2 h-4 w-4" />
           </Button>
         </section>
@@ -51,13 +51,13 @@ export default function Page() {
               description="An intelligent quiz generation system that creates custom quizzes based on your content. Perfect for educators and training platforms."
               image="/ai-quiz-gen.png"
               techStack={["Next.js", "OpenAI", "TailwindCSS", "TypeScript"]}
-              demoLink="https://quizai.sollvr.com"
+              demoLink="https://quzai.sollvr.com"
             />
             <ProjectCard 
               title="Data from Image"
               description="Extract valuable data from images using advanced OCR and AI. Transform visual information into structured data effortlessly."
               image="/datafromimg-img.png"
-              techStack={["React", "Next.js", "Python", "OpenAI"]}
+              techStack={["React", "TensorFlow", "Python", "Computer Vision"]}
               demoLink="https://datafromimage.sollvr.com"
             />
           </div>
@@ -73,13 +73,13 @@ export default function Page() {
             <ContactForm />
           </div>
         </section>
-      </main>
 
-      <footer className="bg-gray-800 text-white py-8">
-        <div className="container mx-auto px-4 text-center">
-          <p>&copy; 2024 Sollvr. All rights reserved. Now go disrupt something!</p>
-        </div>
-      </footer>
+        <footer className="bg-gray-800 text-white py-8">
+          <div className="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Sollvr. All rights reserved. Now go disrupt something!</p>
+          </div>
+        </footer>
+      </main>
     </div>
   )
 }
@@ -109,14 +109,14 @@ function ProjectCard({ title, description, image, techStack, demoLink }: Project
         <p className="text-gray-600 mb-4">{description}</p>
         <div className="flex flex-wrap gap-2 mb-4">
           {techStack.map((tech, index) => (
-            <span key={index} className="bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded">
+            <span key={index} className="bg-[rgba(0,74,172,0.1)] text-[rgb(0,74,172)] text-xs font-semibold px-2.5 py-0.5 rounded">
               {tech}
             </span>
           ))}
         </div>
         <div className="flex justify-between items-center">
           <Link href={demoLink} target="_blank" rel="noopener noreferrer">
-            <Button className="bg-purple-600 hover:bg-purple-700">
+            <Button className="bg-[rgb(0,74,172)] hover:bg-[rgb(0,60,140)]">
               View Demo
             </Button>
           </Link>

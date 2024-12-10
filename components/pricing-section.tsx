@@ -23,20 +23,20 @@ interface PricingCardProps {
 
 function PricingCard({ title, price, features, highlighted = false, onSelect, isSelected }: PricingCardProps) {
   return (
-    <div className={`bg-white p-6 rounded-lg shadow-md text-center transition-all duration-300 ${highlighted || isSelected ? 'ring-2 ring-purple-600 scale-105' : 'hover:scale-102'}`}>
+    <div className={`bg-white p-6 rounded-lg shadow-md text-center transition-all duration-300 ${highlighted || isSelected ? 'ring-2 ring-[rgb(0,74,172)] scale-105' : 'hover:scale-102'}`}>
       <h3 className="text-2xl font-semibold mb-2">{title}</h3>
-      <p className="text-4xl font-bold text-purple-600 mb-4">{price}</p>
+      <p className="text-4xl font-bold text-[rgb(0,74,172)] mb-4">{price}</p>
       <ul className="text-left mb-6">
         {features.map((feature, index) => (
           <li key={index} className="flex items-center mb-2">
-            <ChevronRight className="h-4 w-4 text-purple-600 mr-2" />
+            <ChevronRight className="h-4 w-4 text-[rgb(0,74,172)] mr-2" />
             {feature}
           </li>
         ))}
       </ul>
       <Button 
         onClick={onSelect}
-        className={`w-full ${highlighted || isSelected ? 'bg-purple-600 hover:bg-purple-700' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
+        className={`w-full ${highlighted || isSelected ? 'bg-[rgb(0,74,172)] hover:bg-[rgb(0,60,140)]' : 'bg-gray-200 text-gray-800 hover:bg-gray-300'}`}
       >
         Choose Plan
       </Button>
@@ -56,7 +56,7 @@ export function PricingSection() {
   };
 
   return (
-    <section id="pricing" className="container mx-auto px-4 py-20 bg-gray-50">
+    <section id="pricing" className="container mx-auto px-4 py-20 bg-[#FFE5D9]">
       <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">Pricing That Won't Break The Bank</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <PricingCard 

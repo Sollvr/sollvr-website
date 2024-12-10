@@ -95,7 +95,7 @@ export function ContactForm({ selectedPlan }: ContactFormProps) {
       />
       <textarea
         name="message"
-        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-purple-600"
+        className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[rgb(0,74,172)]"
         rows={4}
         placeholder="Tell us about your requirements..."
         value={formData.message || defaultMessage}
@@ -112,7 +112,7 @@ export function ContactForm({ selectedPlan }: ContactFormProps) {
         )}
         <Button
           type="submit"
-          className="w-full bg-purple-600 hover:bg-purple-700 disabled:opacity-50"
+          className="w-full bg-[rgb(0,74,172)] hover:bg-[rgb(0,60,140)] disabled:opacity-50"
           disabled={status === 'submitting'}
         >
           {status === 'submitting' ? (
