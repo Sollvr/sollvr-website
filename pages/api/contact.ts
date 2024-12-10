@@ -19,11 +19,7 @@ export default async function handler(
     return res.status(405).end(`Method ${req.method} Not Allowed`)
   }
 
-  const { name, email, message } = req.body
-
-  console.log('Attempting to send email...')
-  console.log('EMAIL_USER:', process.env.EMAIL_USER)
-  console.log('EMAIL_PASS:', process.env.EMAIL_PASS ? '[REDACTED]' : 'Not set')
+  const { name, email, company, message, selectedPlan } = req.body
 
   const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
@@ -33,7 +29,7 @@ export default async function handler(
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS,
     },
-  })
+  });
 
   try {
     console.log('Transporter created, verifying...')
@@ -43,11 +39,13 @@ export default async function handler(
     const info = await transporter.sendMail({
       from: process.env.EMAIL_USER,
       to: process.env.EMAIL_USER,
-      subject: `New Contact Form Submission from ${name}`,
+      subject: `New Contact Form Submission${selectedPlan ? ` - ${selectedPlan} Plan` : ''}`,
       html: `
-        <h2>New Contact Form Submission</h2>
+        <h2>New Contact Form Submission${selectedPlan ? ` - ${selectedPlan} Plan` : ''}</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
+        ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
+        ${selectedPlan ? `<p><strong>Selected Plan:</strong> ${selectedPlan}</p>` : ''}
         <p><strong>Message:</strong> ${message}</p>
       `,
     })

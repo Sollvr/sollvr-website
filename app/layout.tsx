@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";  
+import localFont from "next/font/local";
 import "./globals.css";
 
 const geistSans = localFont({
@@ -13,9 +13,24 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-// Set the metadata for the document
 export const metadata: Metadata = {
-  title: "Sollvr",  // Title for the tab
+  title: "Sollvr - Ready-to-Launch Projects",
+  description: "Launch your MVP faster with our ready-to-use project templates",
+  icons: {
+    icon: [
+      {
+        url: '/favicon.svg',
+        type: 'image/svg+xml',
+      },
+      {
+        url: '/favicon.ico',
+        sizes: '32x32',
+        type: 'image/x-icon',
+      }
+    ],
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
@@ -25,11 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <header style={{ display: "flex", alignItems: "center" }}>
-        </header>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
       </body>
     </html>
