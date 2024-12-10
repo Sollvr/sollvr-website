@@ -142,3 +142,91 @@
     transform: translateX(100%) rotate(45deg);
   }
 }
+
+/* Add scroll margin for sections */
+#projects,
+#pricing,
+#contact {
+  scroll-margin-top: 100px;
+}
+
+/* Dialog animations */
+@keyframes dialogSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes dialogFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.DialogOverlay {
+  animation: dialogFadeIn 0.3s ease-out;
+}
+
+.DialogContent {
+  animation: dialogSlideIn 0.4s ease-out;
+}
+
+/* Card hover effect for about section */
+.about-card {
+  transition: all 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Typewriter animation */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink {
+  50% { border-color: transparent }
+}
+
+.typewriter-container {
+  display: inline-block;
+  min-width: 200px;
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid;
+  width: 0;
+  animation: 
+    typing 1s steps(20, end) forwards,
+    blink 1s infinite;
+}
+
+.typewriter.deleting {
+  animation: typing 1s steps(20, end) reverse;
+}
+
+/* Text selection styles */
+::selection {
+  background-color: #FFE45E;
+  color: #000000;
+  font-weight: 600;
+}
+
+::-moz-selection {
+  background-color: #FFE45E;
+  color: #000000;
+  font-weight: 600;
+}

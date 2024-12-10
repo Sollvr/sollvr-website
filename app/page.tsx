@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from "@/components/ui/button"
-import { ChevronRight, MessageSquare, Github, Check } from 'lucide-react'
+import { ChevronRight, MessageSquare, Github, Check, Building2, Rocket, Users, Sparkles } from 'lucide-react'
 import { ContactForm } from '@/components/contact-form'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
@@ -71,9 +71,53 @@ const cardVariant = {
   }
 }
 
+function TypewriterText() {
+  const [currentWord, setCurrentWord] = useState('Projects');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const words = ['Projects', 'Ideas', 'MVPs', 'Apps'];
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    if (isDeleting) {
+      if (currentWord === '') {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % words.length);
+      } else {
+        timeout = setTimeout(() => {
+          setCurrentWord(prev => prev.slice(0, -1));
+        }, 50);
+      }
+    } else {
+      const nextWord = words[wordIndex];
+      if (currentWord === nextWord) {
+        timeout = setTimeout(() => {
+          setIsDeleting(true);
+        }, 2000);
+      } else {
+        timeout = setTimeout(() => {
+          setCurrentWord(nextWord.slice(0, currentWord.length + 1));
+        }, 100);
+      }
+    }
+
+    return () => clearTimeout(timeout);
+  }, [currentWord, isDeleting, wordIndex, words]);
+
+  return (
+    <span className="typewriter-container">
+      <span className={`typewriter ${isDeleting ? 'deleting' : ''} bg-clip-text text-transparent bg-gradient-to-r from-[rgb(0,74,172)] to-blue-500`}>
+        {currentWord}
+      </span>
+    </span>
+  );
+}
+
 export default function Page() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState('');
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
 
   const handlePackageSelect = (packageName: string) => {
     setSelectedPackage(packageName);
@@ -142,20 +186,28 @@ export default function Page() {
               className="max-w-4xl mx-auto text-center"
             >
               <h1 className="font-roboto text-6xl font-medium text-gray-900 mb-6 tracking-tight">
-                Boost Your Startup with{" "}
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-[rgb(0,74,172)] to-blue-500">
-                  Ready-to-Launch
-                </span>{" "}
-                Projects
+                Boost Your Startup with Ready-to-Launch {" "}
+                <TypewriterText />
               </h1>
               <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
                 Let&apos;s explore your idea together.
               </p>
               <div className="flex items-center justify-center gap-4">
-                <Button size="lg" className="bg-[rgb(0,74,172)] hover:bg-white hover:text-[rgb(0,74,172)] border border-transparent hover:border-[rgb(0,74,172)] transition-all h-12 px-8">
+                <Button 
+                  size="lg" 
+                  onClick={() => {
+                    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  className="bg-[rgb(0,74,172)] hover:bg-white hover:text-[rgb(0,74,172)] border border-transparent hover:border-[rgb(0,74,172)] transition-all h-12 px-8"
+                >
                   Explore Projects <ChevronRight className="ml-2 h-4 w-4" />
                 </Button>
-                <Button size="lg" variant="outline" className="h-12 px-8">
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="h-12 px-8"
+                  onClick={() => setIsAboutOpen(true)}
+                >
                   About us
                 </Button>
               </div>
@@ -234,6 +286,7 @@ export default function Page() {
 
         {/* Projects Section */}
         <motion.section 
+          id="projects"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -249,7 +302,7 @@ export default function Page() {
                 Few <span className="text-[rgb(0,74,172)]">websites</span> that I have built.
               </h2>
               <p className="text-xl text-gray-600">
-                Here are some of the MVPs I&apos;ve launched. I turned my ideas into reality.
+                Here are some of the MVPs I have launched. I turned my ideas into reality.
               </p>
             </motion.div>
             <motion.div 
@@ -296,6 +349,7 @@ export default function Page() {
 
         {/* Pricing Section */}
         <motion.section 
+          id="pricing"
           variants={staggerContainer}
           initial="initial"
           whileInView="animate"
@@ -411,6 +465,52 @@ export default function Page() {
               </DialogDescription>
             </DialogHeader>
             <ContactForm selectedPackage={selectedPackage} />
+          </DialogContent>
+        </Dialog>
+
+        {/* About Dialog */}
+        <Dialog open={isAboutOpen} onOpenChange={setIsAboutOpen}>
+          <DialogContent className="sm:max-w-[600px] bg-gradient-to-br from-white to-gray-50 DialogContent">
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-bold flex items-center gap-2 text-[rgb(0,74,172)]">
+                <Building2 className="h-6 w-6" />
+                We are Sollvr
+              </DialogTitle>
+              <DialogDescription className="text-gray-600">
+                <div className="space-y-6 mt-4">
+                  <p className="text-base leading-relaxed">
+                    At Sollvr, we transform innovative ideas into market-ready solutions with lightning speed. 
+                    Our passion lies in helping startups and entrepreneurs bring their visions to life through 
+                    cutting-edge technology and efficient development practices.
+                  </p>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-4">
+                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 about-card">
+                      <Rocket className="h-6 w-6 text-[rgb(0,74,172)] mb-2" />
+                      <h3 className="font-semibold text-gray-900 mb-1">Fast Delivery</h3>
+                      <p className="text-sm text-gray-600">From concept to launch in weeks, not months</p>
+                    </div>
+                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 about-card">
+                      <Users className="h-6 w-6 text-[rgb(0,74,172)] mb-2" />
+                      <h3 className="font-semibold text-gray-900 mb-1">Expert Team</h3>
+                      <p className="text-sm text-gray-600">Dedicated developers and designers</p>
+                    </div>
+                    <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-100 about-card">
+                      <Sparkles className="h-6 w-6 text-[rgb(0,74,172)] mb-2" />
+                      <h3 className="font-semibold text-gray-900 mb-1">Quality First</h3>
+                      <p className="text-sm text-gray-600">Modern, scalable, and maintainable code</p>
+                    </div>
+                  </div>
+
+                  <p className="text-base leading-relaxed">
+                    Our approach combines technical expertise with a deep understanding of startup needs. 
+                    We specialize in building MVPs that not only validate your ideas but also provide a 
+                    solid foundation for growth. With Sollvr, you&apos;re not just getting developers – 
+                    you&apos;re partnering with a team that&apos;s invested in your success.
+                  </p>
+                </div>
+              </DialogDescription>
+            </DialogHeader>
           </DialogContent>
         </Dialog>
 
