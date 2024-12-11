@@ -1152,7 +1152,7 @@ export default function Page() {
                 <motion.div variants={zoomInVariant} className="bg-[#12121A]/80 backdrop-blur-sm rounded-3xl p-8 relative overflow-hidden group">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative z-10">
-                    <div className="flex items-start gap-4">
+                    <div className="flex items-start gap-4 mb-6">
                       <div className="w-10 h-10 bg-[#CCFF00]/10 rounded-xl flex items-center justify-center">
                         <MessageSquare className="w-5 h-5 text-[#CCFF00]" />
                       </div>
@@ -1167,6 +1167,163 @@ export default function Page() {
                   </div>
                 </motion.div>
               </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* FAQ Section */}
+        <motion.section 
+          variants={staggerContainer}
+          initial="initial"
+          whileInView="animate"
+          viewport={{ once: true, margin: "-150px" }}
+          className="py-32 bg-black relative overflow-hidden"
+        >
+          {/* Purple glow effects */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="absolute top-0 left-0 w-[500px] h-[500px] bg-purple-600/20 rounded-full blur-[128px] -translate-x-1/2 -translate-y-1/2" 
+          />
+
+          {/* Grid overlay */}
+          <motion.div 
+            initial={{ opacity: 0.02, scale: 1.1 }}
+            whileInView={{ opacity: 0.05, scale: 1 }}
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:24px_24px]"
+          />
+
+          {/* Radial gradient overlay */}
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#000000_70%)]" />
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="text-center mb-16">
+              <motion.span 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="inline-block bg-purple-600/10 text-purple-400 px-4 py-2 rounded-full text-sm mb-4"
+              >
+                We've got you covered!
+              </motion.span>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="text-5xl font-medium text-white mb-8"
+              >
+                Frequently Asked Questions
+              </motion.h2>
+            </div>
+
+            <div className="max-w-3xl mx-auto space-y-4">
+              <motion.div 
+                variants={slideUpVariant}
+                className="bg-[#12121A]/80 backdrop-blur-sm rounded-xl overflow-hidden"
+              >
+                <details className="group">
+                  <summary className="flex items-center justify-between p-6 text-white cursor-pointer">
+                    <span className="text-lg">How is data security implemented here?</span>
+                    <span className="transition group-open:rotate-180">
+                      <ChevronRight className="w-5 h-5" />
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    We implement industry-standard security measures including end-to-end encryption, secure data storage, and regular security audits. All data is encrypted both in transit and at rest, and we follow best practices for secure development and deployment.
+                  </div>
+                </details>
+              </motion.div>
+
+              <motion.div 
+                variants={slideUpVariant}
+                className="bg-[#12121A]/80 backdrop-blur-sm rounded-xl overflow-hidden"
+              >
+                <details className="group">
+                  <summary className="flex items-center justify-between p-6 text-white cursor-pointer">
+                    <span className="text-lg">What's your typical MVP development timeline?</span>
+                    <span className="transition group-open:rotate-180">
+                      <ChevronRight className="w-5 h-5" />
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    Our typical MVP development timeline is 2-4 weeks, depending on the project scope. We follow an agile methodology, focusing on core features first to get your product to market quickly while maintaining high quality and scalability.
+                  </div>
+                </details>
+              </motion.div>
+
+              <motion.div 
+                variants={slideUpVariant}
+                className="bg-[#12121A]/80 backdrop-blur-sm rounded-xl overflow-hidden"
+              >
+                <details className="group">
+                  <summary className="flex items-center justify-between p-6 text-white cursor-pointer">
+                    <span className="text-lg">How do you handle product iterations and updates?</span>
+                    <span className="transition group-open:rotate-180">
+                      <ChevronRight className="w-5 h-5" />
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    We use a continuous integration/continuous deployment (CI/CD) pipeline for smooth updates and iterations. After the initial MVP launch, we can implement regular sprint cycles for feature additions and improvements based on user feedback and business needs.
+                  </div>
+                </details>
+              </motion.div>
+
+              <motion.div 
+                variants={slideUpVariant}
+                className="bg-[#12121A]/80 backdrop-blur-sm rounded-xl overflow-hidden"
+              >
+                <details className="group">
+                  <summary className="flex items-center justify-between p-6 text-white cursor-pointer">
+                    <span className="text-lg">What technologies do you use for MVP development?</span>
+                    <span className="transition group-open:rotate-180">
+                      <ChevronRight className="w-5 h-5" />
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    We use modern, scalable technologies including React/Next.js for frontend, Node.js/Python for backend, and cloud services like AWS/GCP. Our tech stack is chosen based on your specific needs while ensuring long-term maintainability and scalability.
+                  </div>
+                </details>
+              </motion.div>
+
+              <motion.div 
+                variants={slideUpVariant}
+                className="bg-[#12121A]/80 backdrop-blur-sm rounded-xl overflow-hidden"
+              >
+                <details className="group">
+                  <summary className="flex items-center justify-between p-6 text-white cursor-pointer">
+                    <span className="text-lg">How do you ensure product quality and testing?</span>
+                    <span className="transition group-open:rotate-180">
+                      <ChevronRight className="w-5 h-5" />
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    We implement comprehensive testing strategies including unit tests, integration tests, and end-to-end testing. Our QA process includes automated testing, manual testing, and user acceptance testing to ensure your product meets high quality standards.
+                  </div>
+                </details>
+              </motion.div>
+
+              <motion.div 
+                variants={slideUpVariant}
+                className="bg-[#12121A]/80 backdrop-blur-sm rounded-xl overflow-hidden"
+              >
+                <details className="group">
+                  <summary className="flex items-center justify-between p-6 text-white cursor-pointer">
+                    <span className="text-lg">What happens after the MVP is launched?</span>
+                    <span className="transition group-open:rotate-180">
+                      <ChevronRight className="w-5 h-5" />
+                    </span>
+                  </summary>
+                  <div className="px-6 pb-6 text-gray-400">
+                    Post-launch, we provide ongoing support and maintenance, help analyze user feedback, and can implement new features through our Growth Package. We also assist with scaling infrastructure as your user base grows and your product evolves.
+                  </div>
+                </details>
+              </motion.div>
             </div>
           </div>
         </motion.section>
