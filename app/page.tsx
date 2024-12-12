@@ -113,6 +113,11 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-white">
+      <style jsx>{`
+        .text-glow {
+          text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+      `}</style>
       {/* Header */}
       <motion.header 
         initial={{ y: -100, opacity: 0 }}
@@ -192,7 +197,7 @@ export default function Page() {
           >
             <motion.div 
               variants={zoomInVariant}
-              className="max-w-4xl mx-auto text-center"
+              className="max-w-6xl mx-auto text-center"
             >
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -207,11 +212,11 @@ export default function Page() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
-                className="font-roboto text-6xl font-medium text-white mb-6 tracking-tight"
+                className="font-roboto text-7xl font-medium text-white text-glow mb-6 tracking-tight max-w-5xl mx-auto"
               >
-                Boost Your Startup with <br />
+                Empowering Your Startup with <br />
                 <span className="relative inline-block">
-                 Rapid MVP Development
+                Rapid MVP Development
                   <motion.span 
                     initial={{ scaleX: 0 }}
                     animate={{ scaleX: 1 }}
@@ -224,9 +229,9 @@ export default function Page() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.6 }}
-                className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto"
+                className="text-xl text-gray-400 mb-12 max-w-3xl mx-auto"
               >
-                Let&apos;s explore your idea together.
+                We turn your ideas into reality. Fast, efficient, and tailored for startups without in-house developers.
               </motion.p>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -237,7 +242,7 @@ export default function Page() {
                 <Button 
                   size="lg" 
                   onClick={() => {
-                    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                   }}
                   className="bg-[#CCFF00] hover:bg-[#CCFF00]/90 text-black border-none transition-all h-12 px-8 font-medium"
                 >
@@ -259,7 +264,7 @@ export default function Page() {
           <div className="container mx-auto px-4">
             <div className="text-center mb-20">
               <span className="text-sm text-gray-400 mb-4 block">Built-in Useful Features</span>
-              <h2 className="font-roboto text-5xl mb-6 text-white">
+              <h2 className="font-roboto text-5xl text-glow mb-6 text-white">
                 Simplify Your Workflow<br />
                 With Our Powerful Tools
               </h2>
@@ -270,12 +275,13 @@ export default function Page() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-20 max-w-6xl mx-auto">
+              {/* First Feature - Rapid Prototyping */}
               <motion.div 
                 initial={{ x: -100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="bg-[#12121A] rounded-3xl p-8 relative overflow-hidden group"
+                className="bg-[#12121A] rounded-3xl p-8 relative overflow-hidden group md:col-span-1"
               >
                 <motion.div 
                   initial={{ scale: 0.8, opacity: 0 }}
@@ -284,6 +290,13 @@ export default function Page() {
                   viewport={{ once: true }}
                   className="rounded-xl w-full h-[300px] bg-[#1C1C25] relative overflow-hidden"
                 >
+                  <Image
+                    src="/feature-real-1.jpg"
+                    alt="Rapid Prototyping"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                   <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <motion.div
@@ -306,7 +319,7 @@ export default function Page() {
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="flex flex-col justify-center"
+                className="flex flex-col justify-center md:col-span-1"
               >
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
@@ -315,16 +328,16 @@ export default function Page() {
                   viewport={{ once: true }}
                   className="w-12 h-12 bg-purple-600/10 rounded-xl flex items-center justify-center mb-6"
                 >
-                  <span className="text-2xl">📊</span>
+                  <span className="text-2xl">🚀</span>
                 </motion.div>
                 <motion.h3 
                   initial={{ y: 40, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                   viewport={{ once: true }}
-                  className="text-3xl font-medium text-white mb-4"
+                  className="text-3xl font-medium text-glow text-white mb-4"
                 >
-                  See Your Business<br />Pulse At Once
+                  Rapid<br />Prototyping
                 </motion.h3>
                 <motion.p 
                   initial={{ y: 40, opacity: 0 }}
@@ -333,29 +346,17 @@ export default function Page() {
                   viewport={{ once: true }}
                   className="text-gray-400 text-lg mb-8"
                 >
-                  Our intuitive dashboard unifies key metrics in one place,
-                  enabling quick, informed decisions for your business&apos;s
-                  daily operations.
+                  We quickly turn your ideas into functional prototypes, allowing for early testing and validation.
                 </motion.p>
-                <motion.button 
-                  initial={{ y: 40, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.9 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                  className="inline-flex items-center text-white bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg text-sm font-medium w-fit"
-                >
-                  Learn More
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </motion.button>
               </motion.div>
 
+              {/* Second Feature - Agile Development */}
               <motion.div 
                 initial={{ x: -100, opacity: 0 }}
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="flex flex-col justify-center md:order-3"
+                className="flex flex-col justify-center md:col-span-1 md:col-start-1 md:row-start-2"
               >
                 <motion.div
                   initial={{ scale: 0, opacity: 0 }}
@@ -364,16 +365,16 @@ export default function Page() {
                   viewport={{ once: true }}
                   className="w-12 h-12 bg-[#CCFF00]/10 rounded-xl flex items-center justify-center mb-6"
                 >
-                  <span className="text-2xl">👥</span>
+                  <span className="text-2xl">🔄</span>
                 </motion.div>
                 <motion.h3 
                   initial={{ y: 40, opacity: 0 }}
                   whileInView={{ y: 0, opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.5 }}
                   viewport={{ once: true }}
-                  className="text-3xl font-medium text-white mb-4"
+                  className="text-3xl font-medium text-glow text-white mb-4"
                 >
-                  Work Together Anywhere<br />With Your Team
+                  Agile<br />Development
                 </motion.h3>
                 <motion.p 
                   initial={{ y: 40, opacity: 0 }}
@@ -382,20 +383,8 @@ export default function Page() {
                   viewport={{ once: true }}
                   className="text-gray-400 text-lg mb-8"
                 >
-                  Collaborate in real-time, no matter where you are. Share ideas,
-                  documents, and progress effortlessly with teammates.
+                  Our iterative approach ensures flexibility and allows for continuous improvement based on feedback.
                 </motion.p>
-                <motion.button 
-                  initial={{ y: 40, opacity: 0 }}
-                  whileInView={{ y: 0, opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.9 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.05 }}
-                  className="inline-flex items-center text-white bg-[#CCFF00]/20 hover:bg-[#CCFF00]/30 px-6 py-3 rounded-lg text-sm font-medium w-fit"
-                >
-                  Learn More
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </motion.button>
               </motion.div>
 
               <motion.div 
@@ -403,7 +392,7 @@ export default function Page() {
                 whileInView={{ x: 0, opacity: 1 }}
                 transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="bg-[#12121A] rounded-3xl p-8 relative overflow-hidden group md:order-4"
+                className="bg-[#12121A] rounded-3xl p-8 relative overflow-hidden group md:col-span-1 md:col-start-2 md:row-start-2"
               >
                 <motion.div 
                   initial={{ scale: 0.8, opacity: 0 }}
@@ -412,6 +401,13 @@ export default function Page() {
                   viewport={{ once: true }}
                   className="rounded-xl w-full h-[300px] bg-[#1C1C25] relative overflow-hidden"
                 >
+                  <Image
+                    src="/feature2-2.jpeg"
+                    alt="Agile Development"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
                   <div className="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="absolute inset-0 flex items-center justify-center">
                     <motion.div
@@ -427,6 +423,81 @@ export default function Page() {
                     </motion.div>
                   </div>
                 </motion.div>
+              </motion.div>
+
+              {/* Third Feature - Scalable Solutions */}
+              <motion.div 
+                initial={{ x: -100, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true }}
+                className="bg-[#12121A] rounded-3xl p-8 relative overflow-hidden group md:col-span-1 md:col-start-1 md:row-start-3"
+              >
+                <motion.div 
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 1.2, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="rounded-xl w-full h-[300px] bg-[#1C1C25] relative overflow-hidden"
+                >
+                  <Image
+                    src="/feature3.jpeg"
+                    alt="Scalable Solutions"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <motion.div
+                      initial={{ scale: 0, rotate: -180 }}
+                      whileInView={{ scale: 1, rotate: 0 }}
+                      transition={{ duration: 1.5, delay: 0.5 }}
+                      viewport={{ once: true }}
+                      className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center"
+                    >
+                      <div className="w-12 h-12 bg-green-500/40 rounded-full flex items-center justify-center">
+                        <div className="w-8 h-8 bg-green-500 rounded-full" />
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </motion.div>
+
+              <motion.div 
+                initial={{ x: 100, opacity: 0 }}
+                whileInView={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true }}
+                className="flex flex-col justify-center md:col-span-1 md:col-start-2 md:row-start-3"
+              >
+                <motion.div
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center mb-6"
+                >
+                  <span className="text-2xl">📈</span>
+                </motion.div>
+                <motion.h3 
+                  initial={{ y: 40, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  viewport={{ once: true }}
+                  className="text-3xl font-medium text-glow text-white mb-4"
+                >
+                  Scalable<br />Solutions
+                </motion.h3>
+                <motion.p 
+                  initial={{ y: 40, opacity: 0 }}
+                  whileInView={{ y: 0, opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 0.7 }}
+                  viewport={{ once: true }}
+                  className="text-gray-400 text-lg mb-8"
+                >
+                  We build with growth in mind, ensuring your MVP can evolve into a full-fledged product.
+                </motion.p>
               </motion.div>
             </div>
           </div>
@@ -447,7 +518,7 @@ export default function Page() {
               className="text-center mb-16"
             >
               <span className="text-sm text-gray-400 mb-4 block">Our Projects</span>
-              <h2 className="text-5xl font-bold mb-4 text-white">
+              <h2 className="text-5xl font-bold text-glow mb-4 text-white">
                 Few <span className="text-purple-500">Projects</span> We&apos;ve Built
               </h2>
               <p className="text-xl text-gray-400">
@@ -478,7 +549,7 @@ export default function Page() {
                         </span>
                       ))}
                     </div>
-                    <h3 className="text-3xl font-bold text-white mb-4">AI Quiz Generator</h3>
+                    <h3 className="text-3xl font-bold text-glow text-white mb-4">AI Quiz Generator</h3>
                     <p className="text-gray-400 mb-8 text-lg">
                       An intelligent quiz generation system that creates custom quizzes based on your content. Perfect for educators and training platforms.
                     </p>
@@ -532,7 +603,7 @@ export default function Page() {
                         </span>
                       ))}
                     </div>
-                    <h3 className="text-3xl font-bold text-white mb-4">Data from Image</h3>
+                    <h3 className="text-3xl font-bold text-glow text-white mb-4">Data from Image</h3>
                     <p className="text-gray-400 mb-8 text-lg">
                       Extract valuable data from images using advanced OCR and AI. Transform visual information into structured data effortlessly.
                     </p>
@@ -592,8 +663,9 @@ export default function Page() {
 
           <div className="container mx-auto px-4 relative z-10">
             <motion.div variants={slideUpVariant} className="text-center mb-16">
-              <span className="text-sm text-gray-400 mb-4 block">Pricing Plans</span>
-              <h2 className="text-5xl font-bold mb-4 text-white">Ready to <span className="text-purple-500">BUILD</span> ?</h2>
+              <h2 className="text-5xl font-bold text-glow mb-4 text-white">
+                Ready to <span className="text-purple-500">BUILD</span> ?
+              </h2>
               <p className="text-xl text-gray-400">Choose the perfect package for your project</p>
             </motion.div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-7xl mx-auto">
@@ -613,9 +685,9 @@ export default function Page() {
                     <span className="inline-block bg-purple-600 text-white text-sm font-medium px-4 py-1 rounded-full mb-6">
                       Most Popular
                     </span>
-                    <h3 className="text-2xl font-bold text-white mb-4">MVP Development Package</h3>
+                    <h3 className="text-2xl font-bold text-glow text-white mb-4">MVP Development Package</h3>
                     <p className="text-gray-400 mb-6">One time</p>
-                    <div className="text-4xl font-bold text-white mb-8">Starting at $497</div>
+                    <div className="text-4xl font-bold text-glow text-white mb-8">Starting at $599</div>
                     <button 
                       onClick={() => handlePackageSelect('MVP Development')}
                       className="w-full bg-purple-600 text-white hover:bg-purple-700 h-12 mb-8 rounded-md"
@@ -623,6 +695,7 @@ export default function Page() {
                       Get Started Now →
                     </button>
                     <div>
+                      <p className="font-medium mb-8 text-yellow-500">Completion time: As short as 2 weeks.</p>
                       <p className="font-medium mb-4 text-white">What&apos;s Included:</p>
                       <ul className="space-y-4">
                         {[
@@ -664,11 +737,11 @@ export default function Page() {
                   <div className="absolute inset-0 bg-gradient-to-br from-[#CCFF00]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative z-10">
                     <span className="inline-block bg-[#CCFF00]/20 text-[#CCFF00] text-sm font-medium px-4 py-1 rounded-full mb-6">
-                      Ongoing Support
+                      DevOps Included
                     </span>
-                    <h3 className="text-2xl font-bold text-white mb-4">Growth Package</h3>
-                    <p className="text-gray-400 mb-6">No commitment, cancel anytime</p>
-                    <div className="text-4xl font-bold text-white mb-8">$997/month</div>
+                    <h3 className="text-2xl font-bold text-glow text-white mb-4">Growth Package</h3>
+                    <p className="text-gray-400 mb-6">One time</p>
+                    <div className="text-4xl font-bold text-glow text-white mb-8">Starting at $997</div>
                     <button 
                       onClick={() => handlePackageSelect('Growth Retainer')}
                       className="w-full bg-[#CCFF00]/20 text-white hover:bg-[#CCFF00]/30 h-12 mb-8 rounded-md"
@@ -676,12 +749,15 @@ export default function Page() {
                       Schedule a Call →
                     </button>
                     <div>
+                      <p className="font-medium mb-8 text-yellow-500">Completion time: As short as 1 week.</p>
                       <p className="font-medium mb-4 text-white">What&apos;s Included:</p>
-                      <ul className="space-y-4">
+                        <ul className="space-y-4">
                         {[
+                          "Complete MVP development in 1-2 weeks",
                           "Flexible hours allocation",
-                          "Weekly strategy calls",
+                          "Frequent strategy calls",
                           "Priority feature development",
+                          "DevOps Included"
                         ].map((feature, index) => (
                           <motion.li 
                             key={index}
@@ -839,7 +915,7 @@ export default function Page() {
 
           <div className="container mx-auto px-4 relative">
             <motion.div variants={zoomInVariant} className="text-center mb-16">
-              <h2 className="font-roboto text-5xl font-medium text-white mb-4">
+              <h2 className="font-roboto text-5xl font-medium text-glow text-white mb-4">
                 Contact
               </h2>
             </motion.div>
@@ -854,7 +930,7 @@ export default function Page() {
                       <MessageSquare className="w-5 h-5 text-[#CCFF00]" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-medium text-white mb-2">Contact sales</h3>
+                      <h3 className="text-2xl font-medium text-glow text-white mb-2">Contact sales</h3>
                       <p className="text-gray-400">Talk to our team about your enterprise needs.</p>
                     </div>
                   </div>
@@ -1005,72 +1081,73 @@ export default function Page() {
                         <Users className="w-5 h-5 text-purple-500" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-medium text-white mb-2">Community support</h3>
-                        <p className="text-gray-400 mb-6">Get help with your project from the community.</p>
-                        <div className="flex items-center justify-start gap-4">
-                          {/* Social Media Links */}
-                          <Link 
-                            href="https://linkedin.com/company/sollvr" 
-                            target="_blank"
-                            className="text-gray-400 hover:text-white transition-colors"
-                            aria-label="LinkedIn"
-                          >
-                            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                          </Link>
-                          <Link 
-                            href="https://x.com/sollvr" 
-                            target="_blank"
-                            className="text-gray-400 hover:text-white transition-colors"
-                            aria-label="X (Twitter)"
-                          >
-                            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                            </svg>
-                          </Link>
-                          <Link 
-                            href="https://tiktok.com/@sollvr" 
-                            target="_blank"
-                            className="text-gray-400 hover:text-white transition-colors"
-                            aria-label="TikTok"
-                          >
-                            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-                            </svg>
-                          </Link>
-                          <Link 
-                            href="https://instagram.com/sollvr" 
-                            target="_blank"
-                            className="text-gray-400 hover:text-white transition-colors"
-                            aria-label="Instagram"
-                          >
-                            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.059 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-                            </svg>
-                          </Link>
-                          <Link 
-                            href="https://youtube.com/@sollvr" 
-                            target="_blank"
-                            className="text-gray-400 hover:text-white transition-colors"
-                            aria-label="YouTube"
-                          >
-                            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                            </svg>
-                          </Link>
-                          <Link 
-                            href="https://reddit.com/r/sollvr" 
-                            target="_blank"
-                            className="text-gray-400 hover:text-white transition-colors"
-                            aria-label="Reddit"
-                          >
-                            <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-                              <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
-                            </svg>
-                          </Link>
-                        </div>
+                        <h3 className="text-2xl font-medium text-glow text-white mb-2">Community support</h3>
+                        <p className="text-gray-400">Get help with your project from the community.</p>
                       </div>
+                    </div>
+
+                    <div className="flex items-center justify-start gap-4">
+                      {/* Social Media Links */}
+                      <Link 
+                        href="https://linkedin.com/company/sollvr" 
+                        target="_blank"
+                        className="text-gray-400 hover:text-white transition-colors"
+                        aria-label="LinkedIn"
+                      >
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                      </Link>
+                      <Link 
+                        href="https://x.com/sollvr" 
+                        target="_blank"
+                        className="text-gray-400 hover:text-white transition-colors"
+                        aria-label="X (Twitter)"
+                      >
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
+                      </Link>
+                      <Link 
+                        href="https://tiktok.com/@sollvr" 
+                        target="_blank"
+                        className="text-gray-400 hover:text-white transition-colors"
+                        aria-label="TikTok"
+                      >
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.25 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+                      </svg>
+                      </Link>
+                      <Link 
+                        href="https://reddit.com/r/sollvr" 
+                        target="_blank"
+                        className="text-gray-400 hover:text-white transition-colors"
+                        aria-label="Reddit"
+                      >
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                      </svg>
+                      </Link>
+                      <Link 
+                        href="https://instagram.com/sollvr" 
+                        target="_blank"
+                        className="text-gray-400 hover:text-white transition-colors"
+                        aria-label="Instagram"
+                      >
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                      </svg>
+                      </Link>
+                      <Link 
+                        href="https://youtube.com/@sollvr" 
+                        target="_blank"
+                        className="text-gray-400 hover:text-white transition-colors"
+                        aria-label="YouTube"
+                      >
+                        <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                      </svg>
+                      </Link>
                     </div>
                   </div>
                 </motion.div>
@@ -1083,13 +1160,13 @@ export default function Page() {
                         <MessageSquare className="w-5 h-5 text-[#CCFF00]" />
                       </div>
                       <div>
-                        <h3 className="text-2xl font-medium text-white mb-2">Account support</h3>
-                        <p className="text-gray-400 mb-6">Chat with us to resolve account and billing issues.</p>
-                        <button className="w-full bg-[#1C1C25] hover:bg-[#1C1C25]/80 text-white font-medium py-3 rounded-lg transition-colors">
-                          Start chat
-                        </button>
+                        <h3 className="text-2xl font-medium text-glow text-white mb-2">Account support</h3>
+                        <p className="text-gray-400">Chat with us to resolve account and billing issues.</p>
                       </div>
                     </div>
+                    <button className="w-full bg-[#1C1C25] hover:bg-[#1C1C25]/80 text-white font-medium py-3 rounded-lg transition-colors">
+                      Start chat
+                    </button>
                   </div>
                 </motion.div>
               </div>
@@ -1142,7 +1219,7 @@ export default function Page() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="text-5xl font-medium text-white mb-8"
+                className="text-5xl font-medium text-glow text-white mb-8"
               >
                 Frequently Asked Questions
               </motion.h2>
