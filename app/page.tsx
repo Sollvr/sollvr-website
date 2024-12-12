@@ -55,78 +55,33 @@ const staggerContainer = {
   }
 }
 
-const cardVariant = {
-  initial: { 
-    opacity: 0, 
-    y: 100,
-    scale: 0.9
-  },
-  animate: { 
-    opacity: 1, 
-    y: 0,
-    scale: 1,
-    transition: springConfig
-  }
-}
-
-const slideInFromLeft = {
-  initial: { 
-    x: -200,
-    opacity: 0,
-    scale: 0.8
-  },
-  animate: { 
-    x: 0,
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 1.2,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
-};
-
-const slideInFromRight = {
-  initial: { 
-    x: 200,
-    opacity: 0,
-    scale: 0.8
-  },
-  animate: { 
-    x: 0,
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 1.2,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
-};
-
-const fadeInScale = {
-  initial: { 
-    opacity: 0,
-    scale: 0.8,
-    y: 100
-  },
-  animate: { 
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: {
-      duration: 1,
-      ease: [0.22, 1, 0.36, 1]
-    }
-  }
-};
-
-function TypewriterText() {
+export default function Page() {
+  const [isContactOpen, setIsContactOpen] = useState(false);
+  const [selectedPackage, setSelectedPackage] = useState('');
+  const [isAboutOpen, setIsAboutOpen] = useState(false);
+  const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false);
+  
+  // Add TypeWriter related state
   const [currentWord, setCurrentWord] = useState('Projects');
   const [isDeleting, setIsDeleting] = useState(false);
-  const words = ['Projects', 'Ideas', 'MVPs', 'Apps'];
   const [wordIndex, setWordIndex] = useState(0);
 
+  const handlePackageSelect = (packageName: string) => {
+    setSelectedPackage(packageName);
+    setIsContactOpen(true);
+  };
+
+  // Scroll behavior effect
   useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'smooth';
+    return () => {
+      document.documentElement.style.scrollBehavior = 'auto';
+    };
+  }, []);
+
+  // TypeWriter effect
+  useEffect(() => {
+    const words = ['Projects', 'Ideas', 'MVPs', 'Apps'];
     let timeout: NodeJS.Timeout;
 
     if (isDeleting) {
@@ -151,35 +106,10 @@ function TypewriterText() {
       }
     }
 
-    return () => clearTimeout(timeout);
-  }, [currentWord, isDeleting, wordIndex, words]);
-
-  return (
-    <span className="typewriter-container">
-      <span className={`typewriter ${isDeleting ? 'deleting' : ''} bg-clip-text text-transparent bg-gradient-to-r from-[rgb(0,74,172)] to-blue-500`}>
-        {currentWord}
-      </span>
-    </span>
-  );
-}
-
-export default function Page() {
-  const [isContactOpen, setIsContactOpen] = useState(false);
-  const [selectedPackage, setSelectedPackage] = useState('');
-  const [isAboutOpen, setIsAboutOpen] = useState(false);
-  const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false);
-
-  const handlePackageSelect = (packageName: string) => {
-    setSelectedPackage(packageName);
-    setIsContactOpen(true);
-  };
-
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = 'smooth';
     return () => {
-      document.documentElement.style.scrollBehavior = 'auto';
+      clearTimeout(timeout);
     };
-  }, []);
+  }, [currentWord, isDeleting, wordIndex]);
 
   return (
     <div className="min-h-screen bg-white">
@@ -271,7 +201,7 @@ export default function Page() {
                 className="inline-flex items-center gap-2 bg-white/5 rounded-full px-4 py-2 mb-6 border border-white/10"
               >
                 <span className="bg-[#CCFF00] text-black text-xs font-bold px-2 py-0.5 rounded-full">NEW</span>
-                <span className="text-gray-400 text-sm">We've just released new features</span>
+                <span className="text-gray-400 text-sm">We&apos;ve just released new features</span>
               </motion.div>
               <motion.h1 
                 initial={{ opacity: 0, y: 20 }}
@@ -296,7 +226,7 @@ export default function Page() {
                 transition={{ duration: 0.8, delay: 0.6 }}
                 className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto"
               >
-                Let's explore your idea together.
+                Let&apos;s explore your idea together.
               </motion.p>
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
@@ -404,7 +334,7 @@ export default function Page() {
                   className="text-gray-400 text-lg mb-8"
                 >
                   Our intuitive dashboard unifies key metrics in one place,
-                  enabling quick, informed decisions for your business's
+                  enabling quick, informed decisions for your business&apos;s
                   daily operations.
                 </motion.p>
                 <motion.button 
@@ -518,7 +448,7 @@ export default function Page() {
             >
               <span className="text-sm text-gray-400 mb-4 block">Our Projects</span>
               <h2 className="text-5xl font-bold mb-4 text-white">
-                Few <span className="text-purple-500">Projects</span> We've Built
+                Few <span className="text-purple-500">Projects</span> We&apos;ve Built
               </h2>
               <p className="text-xl text-gray-400">
                 Here are some of the solutions we have launched successfully
@@ -693,7 +623,7 @@ export default function Page() {
                       Get Started Now →
                     </button>
                     <div>
-                      <p className="font-medium mb-4 text-white">What's Included:</p>
+                      <p className="font-medium mb-4 text-white">What&apos;s Included:</p>
                       <ul className="space-y-4">
                         {[
                           "Complete MVP development in 2 weeks",
@@ -746,7 +676,7 @@ export default function Page() {
                       Schedule a Call →
                     </button>
                     <div>
-                      <p className="font-medium mb-4 text-white">What's Included:</p>
+                      <p className="font-medium mb-4 text-white">What&apos;s Included:</p>
                       <ul className="space-y-4">
                         {[
                           "Flexible hours allocation",
@@ -944,7 +874,7 @@ export default function Page() {
                     };
 
                     try {
-                      const response = await fetch('/api/contact', {
+                      await fetch('/api/contact', {
                         method: 'POST',
                         headers: {
                           'Content-Type': 'application/json',
@@ -952,17 +882,13 @@ export default function Page() {
                         body: JSON.stringify(data),
                       });
 
-                      // Show success dialog and reset form regardless of response status
-                      // since the email might still be sent even with CORS errors
                       setIsSuccessDialogOpen(true);
                       form.reset();
                       
                     } catch (error) {
-                      // Only show error if it's a network error
                       if (error instanceof TypeError && error.message === 'Failed to fetch') {
                         alert('Network error. Please check your connection and try again.');
                       } else {
-                        // Still show success since the email might have been sent
                         setIsSuccessDialogOpen(true);
                         form.reset();
                       }
@@ -1209,7 +1135,7 @@ export default function Page() {
                 viewport={{ once: true }}
                 className="inline-block bg-purple-600/10 text-purple-400 px-4 py-2 rounded-full text-sm mb-4"
               >
-                We've got you covered!
+                We&apos;ve got you covered!
               </motion.span>
               <motion.h2 
                 initial={{ opacity: 0, y: 20 }}
@@ -1246,7 +1172,7 @@ export default function Page() {
               >
                 <details className="group">
                   <summary className="flex items-center justify-between p-6 text-white cursor-pointer">
-                    <span className="text-lg">What's your typical MVP development timeline?</span>
+                    <span className="text-lg">What&apos;s your typical MVP development timeline?</span>
                     <span className="transition group-open:rotate-180">
                       <ChevronRight className="w-5 h-5" />
                     </span>
@@ -1349,60 +1275,6 @@ export default function Page() {
           </div>
         </motion.footer>
       </main>
-    </div>
-  )
-}
-
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  image: string;
-  techStack: string[];
-  demoLink: string;
-  tags: string[];
-}
-
-function ProjectCard({ title, description, image, techStack, demoLink, tags }: ProjectCardProps) {
-  return (
-    <div className="bg-white rounded-3xl overflow-hidden p-8 relative group shadow-lg">
-      <div className="absolute inset-0 bg-gradient-to-br from-white to-[rgb(0,74,172)] opacity-5"></div>
-      <div className="relative z-10">
-        <div className="flex gap-2 mb-6">
-          {tags.map((tag, index) => (
-            <span key={index} className="bg-[rgb(0,74,172)]/10 text-[rgb(0,74,172)] text-sm px-4 py-1 rounded-full">
-              {tag}
-            </span>
-          ))}
-        </div>
-        <h3 className="text-3xl font-bold text-gray-900 mb-4">{title}</h3>
-        <p className="text-gray-600 mb-8 text-lg">{description}</p>
-        <div className="relative h-[400px] w-full mb-8 rounded-2xl overflow-hidden bg-gray-50">
-          <Image 
-            src={image} 
-            alt={title} 
-            fill
-            className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-            priority
-          />
-        </div>
-        <div className="flex flex-wrap gap-2 mb-8">
-          {techStack.map((tech, index) => (
-            <span key={index} className="bg-[rgb(0,74,172)]/10 text-[rgb(0,74,172)] text-sm font-medium px-4 py-1.5 rounded-full border border-[rgb(0,74,172)]/20">
-              {tech}
-            </span>
-          ))}
-        </div>
-        <div className="flex justify-between items-center">
-          <Link href={demoLink} target="_blank" rel="noopener noreferrer">
-            <Button className="bg-[rgb(0,74,172)] text-white hover:bg-[rgb(0,74,172)]/90 h-12 px-6">
-              View Live Demo
-            </Button>
-          </Link>
-          <Link href="#" className="text-gray-400 hover:text-gray-600 transition-colors">
-            <Github className="h-6 w-6" />
-          </Link>
-        </div>
-      </div>
     </div>
   )
 }
