@@ -1002,7 +1002,7 @@ export default function Page() {
                           name="company"
                           required
                           className="w-full px-4 py-3 bg-[#1C1C25] border border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#CCFF00]/50"
-                          placeholder="Framer"
+                          placeholder="Sollvr"
                         />
                       </div>
                       <div>
@@ -1047,7 +1047,7 @@ export default function Page() {
                         name="email"
                         required
                         className="w-full px-4 py-3 bg-[#1C1C25] border border-gray-800 rounded-lg text-white focus:outline-none focus:border-[#CCFF00]/50"
-                        placeholder="jonathan@framer.com"
+                        placeholder="jonathan@sollvr.com"
                       />
                     </div>
 
